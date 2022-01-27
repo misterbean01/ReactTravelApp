@@ -1,0 +1,46 @@
+import React, { useEffect, useState } from "react";
+import { Table } from 'react-bootstrap';
+
+
+const Review = () => {
+
+    const [reviews] = useState([]);
+
+    const refrestList = () => {
+        fetch(process.env.REACT_APP_API + 'location/' + 3 + '/review')
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data)
+                this.setState({ reviews: data })
+            });
+    }
+
+
+    useEffect(() => {
+        refrestList()
+    }, []);
+
+
+
+    return (
+        <Table className="mt-4" striped bordered hover size="sm">
+            <thead>
+                <tr>
+                    <th>Rating</th>
+                    <th>Date</th>
+                    <th>Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                {reviews.map(review =>
+                    <tr key={review.ReviewId}>
+                        <td>{review.ReviewRating}</td>
+                        <td>{review.ReviewDate}</td>
+                        <td>{review.ReviewContent}</td>
+                    </tr>)}
+            </tbody>
+        </Table>
+    )
+}
+
+export default Review;

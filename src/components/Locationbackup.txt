@@ -1,0 +1,62 @@
+import React, { Component } from "react";
+import { Table } from 'react-bootstrap';
+import { useLocation } from "react-router-dom";
+
+export class Review extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            reviews: [],
+            location: this.props.locationProp
+        }
+    }
+
+
+
+    refrestList() {
+        fetch(process.env.REACT_APP_API + 'location/' + 3 + '/review')
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data)
+                this.setState({ reviews: data })
+            });
+    }
+
+    componentDidMount() {
+        this.refrestList()
+    }
+
+    componentDidUpdate() {
+        this.refrestList()
+    }
+
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state, callback) => {
+            return;
+        };
+    }
+
+    render() {
+        const { reviews } = this.state;
+        return (
+            <Table className="mt-4" striped bordered hover size="sm">
+                <thead>
+                    <tr>
+                        <th>Rating</th>
+                        <th>Date</th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {reviews.map(review =>
+                        <tr key={review.ReviewId}>
+                            <td>{review.ReviewRating}</td>
+                            <td>{review.ReviewDate}</td>
+                            <td>{review.ReviewContent}</td>
+                        </tr>)}
+                </tbody>
+            </Table>
+        )
+    }
+}
