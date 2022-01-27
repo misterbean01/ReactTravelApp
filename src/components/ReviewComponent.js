@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Table } from 'react-bootstrap';
 import { useLocation } from "react-router-dom";
+import axios from 'axios';
 
 
 export const Review = () => {
 
     const [reviews, setReivews] = useState([]);
-    const location = useLocation()
-    const { loc } = location.state
+    const location = useLocation();
+    const { loc } = location.state;
+
+    const api = axios.create({
+        baseURL: 'http://ec2-54-243-159-146.compute-1.amazonaws.com/'
+    })
 
     const refrestList = () => {
         //console.log(loc);
-        fetch(process.env.REACT_APP_API + 'location/' + loc.LocationId + '/review')
-            .then(response => response.json())
-            .then(data => {
-                //console.log(data)
-                setReivews(data)
-            });
+        api.get('/location/' + loc.LocationId + '/review')
+            .then(response => {
+                //console.log(response.data)
+                setReivews(response.data);
+            })
     }
-
 
     useEffect(() => {
         refrestList()
-    }, []);
-
-
+    });
 
     return (
         <Table className="mt-4" striped bordered hover size="sm">

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Table } from 'react-bootstrap';
+import axios from 'axios';
 
+const api = axios.create({
+    baseURL: 'http://ec2-54-243-159-146.compute-1.amazonaws.com/'
+})
 export class Traveller extends Component {
 
     constructor(props) {
@@ -13,12 +17,11 @@ export class Traveller extends Component {
     }
 
     refrestList() {
-        fetch(process.env.REACT_APP_API + 'traveller')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                this.setState({ travellers: data })
-            });
+        api.get('/traveller')
+            .then(response => {
+                //console.log(response.data)
+                this.setState({ travellers: response.data })
+            })
     }
 
     componentDidMount() {

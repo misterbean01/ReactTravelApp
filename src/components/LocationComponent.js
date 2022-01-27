@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
-
+const api = axios.create({
+    baseURL: 'http://ec2-54-243-159-146.compute-1.amazonaws.com/'
+})
 export class Location extends Component {
 
     constructor(props) {
@@ -14,13 +17,21 @@ export class Location extends Component {
         // this.hideModal = this.hideModal.bind(this);
     }
 
+    // refrestList() {
+    //     api.get('/location')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             //console.log(data)
+    //             this.setState({ locations: data })
+    //         });
+    // }
+
     refrestList() {
-        fetch(process.env.REACT_APP_API + 'location')
-            .then(response => response.json())
-            .then(data => {
-                //console.log(data)
-                this.setState({ locations: data })
-            });
+        api.get('/location')
+            .then(response => {
+                //console.log(response.data)
+                this.setState({ locations: response.data })
+            })
     }
 
     componentDidMount() {
