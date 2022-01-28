@@ -11,9 +11,9 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <h3 className="m-3 d-flex justify-content-center">
-          Welcome to Travel App
-        </h3>
+        <h4 className="m-3 d-flex justify-content-center">
+          Find the place you want to travel here at Travel App
+        </h4>
 
         <Navigation />
 

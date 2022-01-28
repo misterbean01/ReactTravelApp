@@ -35,7 +35,7 @@ export class Traveller extends Component {
     render() {
         const { travellers } = this.state;
         return (
-            <Table className="mt-4" striped bordered hover size="sm">
+            <Table className="mt-5" striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>First Name</th>

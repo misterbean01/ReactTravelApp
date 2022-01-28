@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const api = axios.create({
     baseURL: 'http://ec2-54-243-159-146.compute-1.amazonaws.com/'
+    //baseURL: 'http://127.0.0.1:8000/'
 })
 export class Location extends Component {
 
@@ -64,7 +65,7 @@ export class Location extends Component {
     render() {
         const { locations } = this.state;
         return (
-            <Table className="mt-4" striped bordered hover size="sm">
+            <Table className="mt-5" striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>Location Name</th>
@@ -81,7 +82,7 @@ export class Location extends Component {
                             <td>{location.LocationsGPS}</td>
                             <td>
                                 <Link to={'../location/' + location.LocationId + '/review'} state={{ loc: location }}>
-                                    My route
+                                    Add a Review
                                 </Link>
                             </td>
                         </tr>)}
