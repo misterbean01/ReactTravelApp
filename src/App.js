@@ -1,6 +1,6 @@
 import './App.css';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom'; //use in heroku
-//import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; //use in local
+//import { HashRouter as Router, Route, Routes } from 'react-router-dom'; //use in heroku
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; //use in local
 import { Home } from './components/HomeComponent'
 import { Traveller } from './components/TravellerComponent'
 import { Review } from './components/ReviewComponent'
