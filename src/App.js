@@ -1,5 +1,6 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'; //use in heroku
+//import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; //use in local
 import { Home } from './components/HomeComponent'
 import { Traveller } from './components/TravellerComponent'
 import { Review } from './components/ReviewComponent'
@@ -18,9 +19,9 @@ function App() {
         <Navigation />
 
         <Routes>
-          <Route path='/location' element={<Location />} />
-          <Route path='/traveller' element={<Traveller />} />
-          <Route path='/location/:locId/review' element={<Review />} />
+          <Route path="/location" element={<Location />} />
+          <Route path="/traveller" element={<Traveller />} />
+          <Route path="/location/:locId/review" element={<Review />} />
           <Route exact path="/" element={<Home />} />
         </Routes>
       </div>
